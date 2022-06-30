@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   
+    <title>Manager Page</title>
+</head>
+<body>
+  <h1>Manager Page</h1> 
+
+
+
+  <div>
+    Tester AssignedTo: <br>
+    <input type="text" id = "assignTo"> <br>
+  </div> 
+    
+  <div>  
+    Defect Name : <br>
+        <input type="text" id = "desc">
+                 
+  </div> 
+        
+    <div>           
+      <button onclick="assign()">Assign</button>            
+ 
+  <br> 
+      
+  <br>
+  <br>
+  <button onclick="toLoginPage()">click here to return to the login page.</button>
+</body>
+<script>
+  function toLoginPage(){
+        window.location.href ="login-page.html";
+    }
+
+  
+
+  async function assign(){
+    let assignInfo = {
+
+  assignedTo: document.getElementById("assignTo").value,
+  dateReported: 0,
+  desc: document.getElementById("desc").value,
+  stepsToReproduce: "string",
+  severity: "Low",
+  priority: "Low"
+}
+    
+
+    let assignJSON =JSON.stringify(assignInfo);
+
+    let config = {
+      method: "POST",
+      headers:{'Content-Type':"application/json"},
+      body: assignJSON
+    }
+
+    let httpResponse = await fetch("https://bugcatcher.coe.revaturelabs.com/25/defects",config);
+        if(httpResponse.status === 201){
+            let responseBody = await httpResponse.json();
+            if(responseBody.status === "Pending"){
+                alert("defect created successfully");
+            }
+        }else{
+            let responseBody = await httpResponse.json();
+            alert(responseBody.detail);
+        }
+  }
+</script>
+</html>

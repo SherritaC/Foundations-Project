@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Tester Page</title>
+</head>
+<body>
+   
+    <h1>Tester Platform</h1>
+    <br>
+    <h1 style="text-align:center;">Get Info for Tester</h1>
+    <br>
+    <br>
+    
+    <table border="4" id="tableInfo">
+        <thead>
+            <tr>
+
+                <th>defectId</th>
+                <th>defectName</th>
+                <th>Accept/Decline</th>
+               
+
+            </tr>
+
+            <tr>
+                <td>
+                <select name="defectId" id="defectId"></select>
+                </td>
+                
+                <td>
+                    <select name="defectName" id="desc"></select>
+                    </td>
+            
+                <td>
+                <select name="Accept" id="Accept"><option value"">
+                    select one</option>
+                    <option value="Accepted">Accepted</option>
+                    <option value="Declined">Declined</option>
+                </td>
+                <td>
+                    <button id="butn1" onclick="updateDefectOne()">Update</button>
+                </td>
+            </tr>
+
+        </thead>
+        <tbody id="bodyInfo"></tbody>
+    </table>
+    <br>
+    <br>
+    <table border="4" id="tableInfo2">
+        <thead>
+            <tr>
+
+                <!-- <th>defectName</th> -->
+                <th>Fixed | Shelved | Rejected</th>
+
+            </tr>
+
+            <tr>
+                <!-- <td>
+                <select name="defectName" id="desc"></select>
+                </td> -->
+            
+                <td>
+                <select name="Status" id="status">
+                    <option value"">select one</option>
+                    <option value="Fixed">Fixed</option>
+                    <option value="Shelved">Shelved</option>
+                    <option value="Rejected">Rejected</option>
+                </select>
+                    
+                </td>
+                <td>
+                    <button id="butn2" onclick="updateDefectTwo()">Save</button>
+                </td>
+            </tr>
+
+        </thead>
+        <tbody id="bodyInfo"></tbody>
+    </table>
+    <br>
+    <br>
+   <button onclick="toLoginPage()">click here to return to the login page.</button>
+</body>
+<script>
+    function toLoginPage(){
+        window.location.href ="login-page.html";
+    }
+    const desc = document.getElementById("desc");
+    const defectId = document.getElementById("defectId");
+    defectId.innnerHTML = `<option value""></option>`
+    desc.innerHTML = `<option value""></option>`
+    async function getDefect(){
+        let data = JSON.parse(localStorage.getItem('emp'))
+            console.log(data.username)
+
+        let config = {
+            method:"GET",
+            headers:{'Content-Type': "application/json"},
+            //body: getDefectJSON
+        }
+        let getDefectResponse = await fetch("https://bugcatcher.coe.revaturelabs.com/25/defects", config);
+        if(getDefectResponse.status === 200){
+           let responseBody = await getDefectResponse.json();
+           for(username of responseBody){
+            if(data.username === username['assignedTo']){
+                console.log(username.defectId)
+                defectId.innerHTML = defectId.innerHTML + `<option value"${username.defectId}">${username.defectId}</option>`
+                desc.innerHTML = desc.innerHTML + `<option value"${username.desc}">${username.desc}</option>`
+            }
+           }
+        }
+        
+        
+    }
+    const Accept = document.getElementById("Accept");
+    const status = document.getElementById("status");
+
+    function updateData(){
+        console.log(Accept.options[Accept.selectedIndex].value)
+        console.log(defectId.options[defectId.selectedIndex].value)
+        console.log(desc.options[desc.selectedIndex].value)
+        console.log(status.options[status.selectedIndex].value)
+
+
+    }
+
+
+    
+     async function updateDefectTwo(){
+        let updateDefectInfo = {
+            status: status.options[status.selectedIndex].value
+            
+        }
+    
+        let updateDefectJSON = JSON.stringify(updateDefectInfo);
+       let config = {
+        method: "PATCH",
+        headers:{'Content-Type': "application/json"},
+        body: updateDefectJSON
+
+    }
+        let httpResponse = await fetch(`https://bugcatcher.coe.revaturelabs.com/25/defects/${defectId.options[defectId.selectedIndex].value}`, config);
+            console.log(httpResponse)
+        if(httpResponse.status === 204){
+                alert("defect updated")
+             }
+        
+
+    }
+
+    async function updateDefectOne(){
+        let updateDefectInfo = {
+            status: Accept.options[Accept.selectedIndex].value
+            
+        }
+    
+        let updateDefectJSON = JSON.stringify(updateDefectInfo);
+       let config = {
+        method: "PATCH",
+        headers:{'Content-Type': "application/json"},
+        body: updateDefectJSON
+
+    }
+        let httpResponse = await fetch(`https://bugcatcher.coe.revaturelabs.com/25/defects/${defectId.options[defectId.selectedIndex].value}`, config);
+          console.log(httpResponse)  
+        if(httpResponse.status === 204){
+                alert("defect updated")
+             }
+            
+
+    }
+    getDefect();
+    
+    
+    </script>
+</html>
+

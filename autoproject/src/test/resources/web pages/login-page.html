@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <title>Login Page</title>
+</head>
+<body>
+    <h1>Login</h1>
+
+
+
+    
+        Username : <br>
+        <input type="text" id = "username">
+                 
+    <div>
+        Password : <br>
+        <input type="password" id = "password"> <br>
+    </div> 
+        
+    <div>           
+        <button onclick="login()">Login</button>            
+   
+    <br> 
+    
+  
+   
+    
+</body>
+<script>
+
+
+    async function login(){
+        let loginInfo = {
+            username: document.getElementById("username").value,
+            password: document.getElementById("password").value
+        }
+        
+        let loginJSON = JSON.stringify(loginInfo);
+
+        let config = {
+            method:"PATCH",
+            headers:{'Content-Type':"application/json"},
+            body: loginJSON
+        
+        }
+        let httpResponse = await fetch("https://bugcatcher.coe.revaturelabs.com/25/login",config);
+        if(httpResponse.status === 200){
+            let responseBody = await httpResponse.json();
+
+            
+            localStorage.setItem('emp', JSON.stringify(responseBody));
+            if(responseBody.role === "Tester"){
+                window.location.href = "Tester-page.html"
+            }else {
+                window.location.href = "Manager-page.html"
+            }
+        }else{
+            let responseBody = await httpResponse.json();
+            alert(responseBody.detail);
+        }
+      
+    }   
+        
+    
+   
+
+  
+</script>
+</html>
