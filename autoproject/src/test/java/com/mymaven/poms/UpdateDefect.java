@@ -1,11 +1,17 @@
 package com.mymaven.poms;
 
+import org.junit.Assert;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
+
+import com.mymaven.runner.TestRunner;
+
+
 
 public class UpdateDefect {
 
@@ -29,8 +35,8 @@ public class UpdateDefect {
     public WebElement rejectedSelect;
     @FindBy(id = "Accept")
     public WebElement declineSelect;
-    @FindBy(tagName = "alert")
-    public WebElement alertInput;
+    // @FindBy(tagName = "")
+    // public WebElement alertInput;
 
     public UpdateDefect(WebDriver driver) {
         this.driver = driver;
@@ -39,11 +45,11 @@ public class UpdateDefect {
 
     public void selectDefectId(){
         Select defectIdSelect = new Select(driver.findElement(By.id("defectId")));
-        defectIdSelect.selectByIndex(1);
+        defectIdSelect.selectByIndex(0);
     }
     public void selectDesc(){
         Select descSelect = new Select(driver.findElement(By.id("desc")));
-        descSelect.selectByIndex(2);
+        descSelect.selectByIndex(0);
     }
     public void selectAccept(){
         Select acceptSelect = new Select(driver.findElement(By.id("Accept")));
@@ -67,7 +73,11 @@ public class UpdateDefect {
         rejectedSelect.selectByVisibleText("Rejected");
     }
     public void enterAlert(){
-        driver.switchTo().alert().getText();
+        Alert alert = this.driver.switchTo().alert();
+            String Text = alert.getText();
+            Assert.assertEquals("defect updated", Text);
+            TestRunner.driver.switchTo().alert().accept();
+
     }
     public void clickbutn1(){
         this.updateButn1.click();

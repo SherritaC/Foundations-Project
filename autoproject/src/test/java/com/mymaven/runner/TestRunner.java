@@ -15,7 +15,7 @@ import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
 
 @RunWith(Cucumber.class)
-@CucumberOptions(features="classpath:features", glue= "com/mymaven/steps")
+@CucumberOptions(features="classpath:features", glue= "com/mymaven/steps", plugin = {"pretty", "html:src/test/resources/reports/html-reports.html"})
 public class TestRunner {
 
 public static WebDriver driver;
@@ -33,7 +33,9 @@ public static void setup(){
     updateDefect = new UpdateDefect(driver);
     wait = new WebDriverWait(driver, 2);
     
+    
 }
+
 
 @AfterClass
 public static void teardown(){

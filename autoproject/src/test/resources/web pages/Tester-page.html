@@ -128,12 +128,12 @@
 
     
      async function updateDefectTwo(){
-        let updateDefectInfo = {
+        let updateDefectInfoTwo = {
             status: status.options[status.selectedIndex].value
             
         }
     
-        let updateDefectJSON = JSON.stringify(updateDefectInfo);
+        let updateDefectJSON = JSON.stringify(updateDefectInfoTwo);
        let config = {
         method: "PATCH",
         headers:{'Content-Type': "application/json"},

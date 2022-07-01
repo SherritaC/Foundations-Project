@@ -1,16 +1,20 @@
 package com.mymaven.steps;
 
+import org.junit.Assert;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+
 import com.mymaven.runner.TestRunner;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
+
 public class UpdateDefectSteps {
 
     @Given("the tester is on their homepage")
 public void the_tester_is_on_their_homepage() {
-    TestRunner.driver.get("File://C:/Users/colem/OneDrive/Desktop/VS CODE/MyMavenAutoProject/autoproject/src/test/resources/web pages/Tester-page.html");
+    TestRunner.driver.get("File://C:/Users/colem/OneDrive/Desktop/VS CODE/MyMavenAutoProject/Foundations-Project/autoproject/src/test/resources/web pages/Tester-page.html");
 }
     @When("the tester selects the defect name")
 public void the_tester_selects_the_defect_name() {
@@ -37,7 +41,10 @@ public void the_tester_selects_the_decline_button() {
 
     @Then("the tester should be able to decline the defect")
 public void the_tester_should_be_able_to_decline_the_defect() {
-    
+    TestRunner.wait.until(ExpectedConditions.alertIsPresent());
+    String text = TestRunner.driver.switchTo().alert().getText();
+     Assert.assertEquals("defect updated", text);
+     TestRunner.driver.switchTo().alert().accept();
 }
 
 
@@ -50,23 +57,36 @@ public void the_tester_selects_the_fixed_option() {
     @When("the tester clicks the save button")
 public void the_tester_clicks_the_save_button() {
     TestRunner.updateDefect.clickbutn2();
+    
 }
  
     @Then("the tester should be able to save defect status as fixed")
 public void the_tester_should_be_able_to_save_defect_status_as_fixed() {
    
+    TestRunner.wait.until(ExpectedConditions.alertIsPresent());
+    String text = TestRunner.driver.switchTo().alert().getText();
+     Assert.assertEquals("defect updated", text);
+     TestRunner.driver.switchTo().alert().accept();
+    
+     
 }
 
  
 
-    @When("the tester selects the reject option")
+    @When("the tester selects the rejected option")
 public void the_tester_selects_the_reject_option() {
     TestRunner.updateDefect.rejectedStatus();
 }
 
     @Then("the tester should be able to save defect status as rejected")
-public void the_tester_should_be_able_to_update_defect_status_as_rejected() {
-   
+public void the_tester_should_be_able_to_save_defect_status_as_rejected() {
+
+    TestRunner.wait.until(ExpectedConditions.alertIsPresent());
+    String text = TestRunner.driver.switchTo().alert().getText();
+     Assert.assertEquals("defect updated", text);
+     TestRunner.driver.switchTo().alert().accept();
+
+    //TestRunner.updateDefect.enterAlert();
 }
 
 
@@ -77,7 +97,11 @@ public void the_tester_selects_the_shelved_option() {
 }
 
     @Then("the tester should be able to save defect status as shelved")
-public void the_tester_should_be_able_to_update_defect_status_to_shelved() {
-   
+public void the_tester_should_be_able_to_save_defect_status_to_shelved() {
+    TestRunner.wait.until(ExpectedConditions.alertIsPresent());
+    String text = TestRunner.driver.switchTo().alert().getText();
+     Assert.assertEquals("defect updated", text);
+     TestRunner.driver.switchTo().alert().accept();
+  
 }
 }

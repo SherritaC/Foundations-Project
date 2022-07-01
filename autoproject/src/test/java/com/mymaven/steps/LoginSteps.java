@@ -13,7 +13,7 @@ public class LoginSteps {
     
     @Given("the employee is on the login page")
 public void the_employee_is_on_the_login_page() {     
-    TestRunner.driver.get("File://C:/Users/colem/OneDrive/Desktop/VS CODE/MyMavenAutoProject/autoproject/src/test/resources/web pages/login-page.html");  
+    TestRunner.driver.get("File://C:/Users/colem/OneDrive/Desktop/VS CODE/MyMavenAutoProject/Foundations-Project/autoproject/src/test/resources/web pages/login-page.html");  
 }
 
     @When("the employee clicks the login button")

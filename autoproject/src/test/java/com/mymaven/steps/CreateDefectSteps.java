@@ -1,6 +1,9 @@
 package com.mymaven.steps;
 
 
+import org.junit.Assert;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+
 import com.mymaven.runner.TestRunner;
 
 import io.cucumber.java.en.Given;
@@ -14,7 +17,7 @@ public class CreateDefectSteps {
 
     @Given("the manager is on custom view homepage")
 public void the_manager_is_on_custom_view_homepage() {
-    TestRunner.driver.get("File://C:/Users/colem/OneDrive/Desktop/VS CODE/MyMavenAutoProject/autoproject/src/test/resources/web pages/Manager-page.html");
+    TestRunner.driver.get("File://C:/Users/colem/OneDrive/Desktop/VS CODE/MyMavenAutoProject/Foundations-Project/autoproject/src/test/resources/web pages/Manager-page.html");
 }
 
 @When("the manager assigns tester to defect")
@@ -32,11 +35,18 @@ public void the_manager_gives_name_to_the_defect() {
 public void the_manager_clicks_the_assign_button() {
 
     TestRunner.createDefect.clickButton(); 
+    
 }
 
     @Then("the manager should receive an alert stating that defect has been created")
 public void the_manager_should_receive_an_alert_stating_that_defect_has_been_created() {
-   
+    
+    TestRunner.wait.until(ExpectedConditions.alertIsPresent());
+    String text = TestRunner.driver.switchTo().alert().getText();
+     Assert.assertEquals("defect created successfully", text);
+     TestRunner.driver.switchTo().alert().accept();
+
+  
 }
 
 }

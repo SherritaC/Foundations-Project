@@ -1,9 +1,12 @@
 package com.mymaven.poms;
 
+import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.Alert;
+
 
 public class CreateDefect {
   public static final String Alert = null;
@@ -40,7 +43,11 @@ private WebDriver driver;
   public void clickButton(){
     this.assignButton.click();
   }
+  public void enterAlert(){
+    Alert alert = this.driver.switchTo().alert();
+        String Text = alert.getText();
+        Assert.assertEquals("defect created successfully", Text);
  
   
-
+  }
 }
