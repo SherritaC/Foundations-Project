@@ -128,12 +128,12 @@
 
     
      async function updateDefectTwo(){
-        let updateDefectInfoTwo = {
+        let updateDefectInfo = {
             status: status.options[status.selectedIndex].value
             
         }
     
-        let updateDefectJSON = JSON.stringify(updateDefectInfoTwo);
+        let updateDefectJSON = JSON.stringify(updateDefectInfo);
        let config = {
         method: "PATCH",
         headers:{'Content-Type': "application/json"},
@@ -164,9 +164,11 @@
     }
         let httpResponse = await fetch(`https://bugcatcher.coe.revaturelabs.com/25/defects/${defectId.options[defectId.selectedIndex].value}`, config);
           console.log(httpResponse)  
-        if(httpResponse.status === 204){
-                alert("defect updated")
+         if(httpResponse.status === 204){
+        
+                 alert("defect updated")
              }
+        
             
 
     }

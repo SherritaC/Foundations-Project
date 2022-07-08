@@ -32,7 +32,7 @@ public void the_manager_enters_his_correct_username()
     @When("the manager enters his correct password")      
 public void the_manager_enters_his_correct_password() 
 {
-    TestRunner.login.enterPassword("overcomer4");    
+    TestRunner.login.enterPassword("big");    
 }
     @Then("the manager should be logged into the manager homepage")
 public void the_manager_should_be_logged_into_the_manager_homepage() {
@@ -44,12 +44,12 @@ public void the_manager_should_be_logged_into_the_manager_homepage() {
 
     @When("the tester enters his correct username")       
 public void the_tester_enters_his_correct_username() {    // Write code here that turns the phrase above into concrete actions
-    TestRunner.login.enterUsername("Byrd00");    
+    TestRunner.login.enterUsername("Auto");    
 }
 
     @When("the tester enters his correct password")       
 public void the_tester_enters_his_correct_password() {    // Write code here that turns the phrase above into concrete actions
-    TestRunner.login.enterPassword("showout0");   
+    TestRunner.login.enterPassword("mate");   
 }
 
     @Then("the tester should be logged into the tester homepage")

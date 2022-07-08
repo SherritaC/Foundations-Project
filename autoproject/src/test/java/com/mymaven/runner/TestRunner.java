@@ -31,7 +31,7 @@ public static void setup(){
     login = new LoginPage(driver);
     createDefect = new CreateDefect(driver);
     updateDefect = new UpdateDefect(driver);
-    wait = new WebDriverWait(driver, 2);
+    wait = new WebDriverWait(driver, 15);
     
     
 }

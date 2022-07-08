@@ -19,28 +19,28 @@ Feature: Tester should be able to initally update the defects so they can accept
     Scenario: As a tester, I want to fix the defects so that I can save the defect status to fixed
 
         Given the tester is on their homepage 
-        When the tester selects the accept button
-        When the tester clicks on the update button
+        # When the tester selects the accept button
+        # When the tester clicks on the update button
         When the tester selects the fixed option
-        When the tester clicks the save button
+        When the tester clicks on the save button
         Then the tester should be able to save defect status as fixed
 
  
     Scenario: As a tester, I want to shelved the defects so that I can save the status to shelved 
 
         Given the tester is on their homepage 
-        When the tester selects the accept button
-        When the tester clicks on the update button
+        # When the tester selects the accept button
+        # When the tester clicks on the update button
         When the tester selects the shelved option
-        When the tester clicks the save button
+        When the tester clicks on the save button
         Then the tester should be able to save defect status as shelved
 
  
     Scenario: As a tester, I want to reject the defect so that I can save the status to rejected
 
         Given the tester is on their homepage 
-        When the tester selects the accept button
-        When the tester clicks on the update button 
+        # When the tester selects the accept button
+        # When the tester clicks on the update button 
         When the tester selects the rejected option
-        When the tester clicks the save button
+        When the tester clicks on the save button
         Then the tester should be able to save defect status as rejected

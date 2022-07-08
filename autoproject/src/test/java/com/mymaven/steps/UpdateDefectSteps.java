@@ -16,6 +16,12 @@ public class UpdateDefectSteps {
 public void the_tester_is_on_their_homepage() {
     TestRunner.driver.get("File://C:/Users/colem/OneDrive/Desktop/VS CODE/MyMavenAutoProject/Foundations-Project/autoproject/src/test/resources/web pages/Tester-page.html");
 }
+    @When("the tester clicks on the save button")
+public void the_tester_clicks_on_the_save_button() {
+    TestRunner.updateDefect.clickbutn2();
+   
+    
+}
     @When("the tester selects the defect name")
 public void the_tester_selects_the_defect_name() {
     TestRunner.updateDefect.selectDesc();
@@ -27,6 +33,7 @@ public void the_tester_selects_the_accept_button() {
     @When("the tester clicks on the update button")
 public void the_tester_clicks_on_the_update_button() {
     TestRunner.updateDefect.clickbutn1();
+    
 }
     @Then("the tester should be able to accept the defect")
 public void the_tester_should_be_able_to_accept_the_defect() {
@@ -41,6 +48,7 @@ public void the_tester_selects_the_decline_button() {
 
     @Then("the tester should be able to decline the defect")
 public void the_tester_should_be_able_to_decline_the_defect() {
+    
     TestRunner.wait.until(ExpectedConditions.alertIsPresent());
     String text = TestRunner.driver.switchTo().alert().getText();
      Assert.assertEquals("defect updated", text);
@@ -54,11 +62,7 @@ public void the_tester_selects_the_fixed_option() {
    
     TestRunner.updateDefect.fixedStatus();
 }
-    @When("the tester clicks the save button")
-public void the_tester_clicks_the_save_button() {
-    TestRunner.updateDefect.clickbutn2();
-    
-}
+
  
     @Then("the tester should be able to save defect status as fixed")
 public void the_tester_should_be_able_to_save_defect_status_as_fixed() {
@@ -85,8 +89,6 @@ public void the_tester_should_be_able_to_save_defect_status_as_rejected() {
     String text = TestRunner.driver.switchTo().alert().getText();
      Assert.assertEquals("defect updated", text);
      TestRunner.driver.switchTo().alert().accept();
-
-    //TestRunner.updateDefect.enterAlert();
 }
 
 
@@ -97,7 +99,8 @@ public void the_tester_selects_the_shelved_option() {
 }
 
     @Then("the tester should be able to save defect status as shelved")
-public void the_tester_should_be_able_to_save_defect_status_to_shelved() {
+public void the_tester_should_be_able_to_save_defect_status_as_shelved() {
+
     TestRunner.wait.until(ExpectedConditions.alertIsPresent());
     String text = TestRunner.driver.switchTo().alert().getText();
      Assert.assertEquals("defect updated", text);

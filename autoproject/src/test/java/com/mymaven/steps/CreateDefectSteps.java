@@ -22,12 +22,12 @@ public void the_manager_is_on_custom_view_homepage() {
 
 @When("the manager assigns tester to defect")
 public void the_manager_assigns_tester_to_defect() {
-    TestRunner.createDefect.enterAssignTo("Trone44");
+    TestRunner.createDefect.enterAssignTo("Auto");
 }
 
     @When("the manager gives name to the defect")
 public void the_manager_gives_name_to_the_defect() {
-  TestRunner.createDefect.enterDesc("bigTruck");
+  TestRunner.createDefect.enterDesc("testing01");
 }
 
 
